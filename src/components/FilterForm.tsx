@@ -6,7 +6,7 @@ interface FilterFormProps {
   onPriceInputChange: Function;
 }
 const FilterForm = (Props: FilterFormProps) => {
-  let onPriceInputChange = ({ target }: any) => {
+  let onPriceInputChange = (target: HTMLInputElement) => {
     Props.onPriceInputChange(target.name, target.value);
   };
   return (
@@ -18,14 +18,14 @@ const FilterForm = (Props: FilterFormProps) => {
         name="priceFrom"
         placeholder="Price from..."
         value={Props.priceFrom}
-        onChange={(e) => onPriceInputChange(e)}
+        onChange={(e) => onPriceInputChange(e.target)}
       />
       <input
         type="number"
         name="priceTo"
         placeholder="Price to..."
         value={Props.priceTo}
-        onChange={(e) => onPriceInputChange(e)}
+        onChange={(e) => onPriceInputChange(e.target)}
       />
     </div>
   );
