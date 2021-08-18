@@ -1,6 +1,12 @@
 import React from "react";
+import { Product, Columns } from "../interfaces";
 
-const ProductList = ({ products, columns }) => {
+interface ProductListProps {
+  products: Product[];
+  columns: Columns;
+}
+
+const ProductList = ({ products, columns }: ProductListProps) => {
   return (
     <div id="product-list">
       <header>

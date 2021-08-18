@@ -1,9 +1,15 @@
 import React from "react";
+import { Columns } from "../interfaces";
 
-const ToggleColumns = (Props) => {
-  let onCheckboxClick = (e) => {
-    let name = e.target.name;
-    let checked = e.target.checked;
+interface SearchProps {
+  columns: Columns;
+  onCheckboxClick: Function;
+}
+
+const ToggleColumns = (Props: SearchProps) => {
+  let onCheckboxClick = (target: HTMLInputElement) => {
+    let name = target.name;
+    let checked = target.checked;
     Props.onCheckboxClick(name, checked);
   };
   return (
@@ -15,7 +21,7 @@ const ToggleColumns = (Props) => {
             <input
               name={column}
               type="checkbox"
-              onChange={(e) => onCheckboxClick(e)}
+              onChange={(e) => onCheckboxClick(e.target)}
             />
           </div>
         );

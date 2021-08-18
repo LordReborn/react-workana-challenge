@@ -1,7 +1,12 @@
 import React from "react";
 
-const FilterForm = (Props) => {
-  let onPriceInputChange = ({ target }) => {
+interface FilterFormProps {
+  priceFrom: number;
+  priceTo: number;
+  onPriceInputChange: Function;
+}
+const FilterForm = (Props: FilterFormProps) => {
+  let onPriceInputChange = ({ target }: any) => {
     Props.onPriceInputChange(target.name, target.value);
   };
   return (

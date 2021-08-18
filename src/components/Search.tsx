@@ -3,11 +3,16 @@ import "../styles/Search.css";
 import ToggleColumns from "./ToggleColumns";
 import ProductList from "./ProductList";
 import FilterForm from "./FilterForm";
+import { Product } from "../interfaces";
 
-const Search = ({ products }) => {
+interface SearchProps {
+  products: Product[];
+}
+
+const Search = ({ products }: SearchProps) => {
   const [prices, setPrices] = useState({
-    priceFrom: "",
-    priceTo: "",
+    priceFrom: 0,
+    priceTo: 0,
   });
   const [columns, setColumns] = useState({
     id: true,
@@ -17,23 +22,22 @@ const Search = ({ products }) => {
     price: true,
   });
 
-  const onPriceInputChange = (name, value) => {
+  const onPriceInputChange = (name: string, value: string) => {
     setPrices({ ...prices, [name]: value });
   };
 
-  const filterProducts = (products) => {
+  const filterProducts = (products: Product[]) => {
     if (prices.priceTo && prices.priceFrom <= prices.priceTo) {
       return products.filter(
         (product) =>
-          (prices.priceFrom <= product.price) &
-          (product.price <= prices.priceTo)
+          prices.priceFrom <= product.price && product.price <= prices.priceTo
       );
     } else {
       return products;
     }
   };
 
-  const onCheckboxClick = (name, checked) => {
+  const onCheckboxClick = (name: string, checked: string) => {
     setColumns({ ...columns, [name]: checked });
   };
 
